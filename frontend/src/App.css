@@ -1,0 +1,193 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+  background-color: #f8f9fa !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.gradient-background {
+  background: linear-gradient(to right, #111, #000);
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+
+::-webkit-scrollbar-track{
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #8C52FF;
+  border-radius: 10px;
+}
+
+/* Header */
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: 900;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+}
+
+.openbtn:hover {
+  background-color: #8C52FF;
+  border-radius: 10px;
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+/* Other CSS */
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Sidebar */
+
+.sidebar {
+  height: auto;
+  width: 0;
+  position: absolute;
+  z-index: 3;
+  top: 66px;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 40px;
+  border-bottom-right-radius: 20px;
+  transition: 0.5s;
+}
+
+.sidebar a, .sidebar a:focus {
+  padding: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover{
+  color: #818181;
+}
+
+/* Login */
+
+.login-sec {
+  padding: 75px 0;
+}
+
+.login-sec form a, .signup-sec a, .forgot-password-sec a {
+  color: #8C52FF;
+}
+
+/* SignUp */
+
+.signup-sec {
+  padding: 50px 0;
+}
+
+/* Forgot Password / Reset Password*/
+
+.forgot-password-sec, .reset-password-sec {
+  padding: 150px 0;
+}
+
+/* Dashboard */
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+.welcome-dashboard, .stats-dashboard {
+  border-bottom: 3px solid #8c52ff;
+}
+
+.customers-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #ee8f09;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.suppliers-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #8c52ff;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #FF204E;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #0094ff;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.medicines-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #e8bf39;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expired-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #d2666b;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stock-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #ef00a0;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Categories Page */
+
+.categories-page-title, .users-page-title, .roles-page-title, .suppliers-page-title, .customers-page-title {
+  border-bottom: 3px solid #8c52ff;
+}
