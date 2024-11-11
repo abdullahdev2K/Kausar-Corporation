@@ -53,6 +53,10 @@ body{
   opacity: 0.8;
 }
 
+.categories-page-title, .users-page-title, .roles-page-title, .suppliers-page-title, .customers-page-title, .products-page-title, .companies-page-title {
+  border-bottom: 3px solid #8c52ff;
+}
+
 /* Sidebar */
 
 .sidebar {
@@ -184,10 +188,4 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* Categories Page */
-
-.categories-page-title, .users-page-title, .roles-page-title, .suppliers-page-title, .customers-page-title {
-  border-bottom: 3px solid #8c52ff;
 }

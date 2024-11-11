@@ -9,6 +9,7 @@ import categoryRoutes from './routes/categoryRoutes.js';
 import roleRoutes from './routes/roleRoutes.js';
 import supplierRoutes from './routes/supplierRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';
+import companyRoutes from './routes/companyRoutes.js';
 
 // server initialization
 const app = express();
@@ -35,6 +36,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/customers', customerRoutes);
+app.use('/api/companies', companyRoutes);
 
 // Serve static files from the "uploads" folder
 app.use('/uploads', express.static('uploads'));

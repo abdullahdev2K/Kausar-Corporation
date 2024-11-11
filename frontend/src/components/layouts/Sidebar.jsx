@@ -118,7 +118,7 @@ const Sidebar = () => {
                         </span>
                         Products
                         <span className="dropdown-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width={12} height={12}>{/*!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.*/}<path fill="#ffffff" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width={12} height={12}>{/*!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.*/}<path fill="#ffffff" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
                         </span>
                     </Link>
                     <ul className={`submenu collapse list-unstyled ${openSubmenu === 4 ? 'show' : ''}`}>
@@ -196,6 +196,24 @@ const Sidebar = () => {
                     <ul className={`submenu collapse list-unstyled ${openSubmenu === 8 ? 'show' : ''}`}>
                         <li><Link className="nav-link" to="/add-user">Add new User</Link></li>
                         <li><Link className="nav-link" to="/users">Manage Users</Link></li>
+                    </ul>
+                </li>
+                <li className="nav-item has-submenu" onClick={() => toggleSubmenu(9)}>
+                    <Link to="#" className="nav-link fw-semibold" >
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={20} height={20}>
+                                {/* <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
+                                <path fill="#ffffff" d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/>
+                            </svg>
+                        </span>
+                        Companies
+                        <span className="dropdown-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width={12} height={12}>{/*!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.*/}<path fill="#ffffff" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
+                        </span>
+                    </Link>
+                    <ul className={`submenu collapse list-unstyled ${openSubmenu === 9 ? 'show' : ''}`}>
+                        <li><Link className="nav-link" to="/add-company">Add new Company</Link></li>
+                        <li><Link className="nav-link" to="/companies">Manage Companies</Link></li>
                     </ul>
                 </li>
                 <li className="nav-item">

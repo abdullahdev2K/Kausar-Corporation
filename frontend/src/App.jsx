@@ -23,6 +23,10 @@ import UpdateSupplier from './components/suppliers/UpdateSupplier.jsx';
 import Customers from './components/customers/Customers.jsx';
 import AddCustomer from './components/customers/AddCustomer.jsx';
 import UpdateCustomer from './components/customers/UpdateCustomer.jsx';
+import Companies from './components/company/Companies.jsx';
+import AddCompany from './components/company/AddCompany.jsx';
+import UpdateCompany from './components/company/UpdateCompany.jsx';
+import Products from './components/products/Products.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import './App.css';
 
@@ -194,6 +198,27 @@ const App = () => {
                   </ProtectedRoute>
               } 
           />
+          
+          <Route path="/companies" element={<Companies />} />
+
+          <Route 
+              path="/add-company" 
+              element={
+                  <ProtectedRoute requiredRole="admin">
+                      <AddCompany />
+                  </ProtectedRoute>
+              } 
+          />
+          <Route 
+                path="/update-company" 
+                element={
+                    <ProtectedRoute requiredRole="admin">
+                        <UpdateCompany />
+                    </ProtectedRoute>
+                } 
+            />
+
+          <Route path="/products" element={<Products />} />
       </Routes>
     </>
   );
