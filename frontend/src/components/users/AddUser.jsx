@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRoles } from '../../slices/roleSlice.js';
 import { addUser } from '../../slices/userSlice.js'; // Import addUser thunk
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
 
 const AddUser = () => {
@@ -68,10 +68,10 @@ const AddUser = () => {
             <Container>
                 <Row className="pb-4 d-flex justify-content-between mb-5 users-page-title">
                     <Col>
-                        <h2 className="text-dark">Add User 👤</h2>
+                        <h2 className="text-dark mb-0">Add User 👤</h2>
                     </Col>
                     <Col className="text-end">
-                        <Button variant="dark" onClick={() => navigate('/users')}>View Users</Button>
+                        <Link to="/users" className="btn btn-dark">View Users</Link>
                     </Col>
                 </Row>
                 <div className="bg-white p-4 rounded-3 shadow">
@@ -82,13 +82,13 @@ const AddUser = () => {
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" value={fname} onChange={(e) => setFname(e.target.value)} required />
+                                    <Form.Control type="text" placeholder='Enter first name' value={fname} onChange={(e) => setFname(e.target.value)} required />
                                 </Form.Group>
                             </Col>
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" value={lname} onChange={(e) => setLname(e.target.value)} required />
+                                    <Form.Control type="text" placeholder='Enter last name' value={lname} onChange={(e) => setLname(e.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -96,35 +96,35 @@ const AddUser = () => {
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Mobile No</Form.Label>
-                                    <Form.Control type="text" value={mobileno} onChange={(e) => setMobileno(e.target.value)} required />
+                                    <Form.Control type="text" placeholder='Enter mobile number' value={mobileno} onChange={(e) => setMobileno(e.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>CNIC</Form.Label>
-                                    <Form.Control type="text" value={cnic} onChange={(e) => setCnic(e.target.value)} required />
+                                    <Form.Control type="text" value={cnic} placeholder='Enter cnic' onChange={(e) => setCnic(e.target.value)} required />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                            <Form.Control type="email" placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)} required />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                            <Form.Control type="password" value={password} placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} required />
                         </Form.Group>
                         <Row>
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Date of Birth</Form.Label>
-                                    <Form.Control type="date" value={dob} onChange={(e) => setDob(e.target.value)} required />
+                                    <Form.Control type="date" value={dob} onChange={(e) => setDob(e.target.value)} required/>
                                 </Form.Group>
                             </Col>
                             <Col md={6}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Gender</Form.Label>
-                                    <Form.Control as="select" value={gender} onChange={(e) => setGender(e.target.value)} required>
+                                    <Form.Control as="select" value={gender} onChange={(e) => setGender(e.target.value)} >
                                         <option value="">Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>

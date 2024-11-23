@@ -6,23 +6,27 @@ export const getAllCustomers = async () => {
     return rows;
 };
 
-export const createCustomer = async (customer_name, contact_info, address) => {
-    const query = `INSERT INTO customers (customer_name, contact_info, address) VALUES (?, ?, ?)`;
-    const [result] = await pool.execute(query, [customer_name, contact_info, address]);
+export const createCustomer = async (customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info) => {
+    const query = `
+        INSERT INTO customers (customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const [result] = await pool.execute(query, [customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info]);
     return result;
 };
 
-export const updateCustomer = async (id, customer_name, contact_info, address) => {
-    const query = `UPDATE customers SET customer_name = ?, contact_info = ?, address = ? WHERE id = ?`;
-    
-    // Ensure both id, customer_name, contact_info and address are defined before executing the query
-    if (customer_name === undefined || id === undefined || contact_info === undefined || address === undefined) {
-        throw new Error('Customer name or Customer contact or Customer address or ID is undefined');
-    }
-    
-    await pool.execute(query, [customer_name, contact_info, address, id]);
-};
+export const updateCustomer = async (id, customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info) => {
+    const query = `
+        UPDATE customers 
+        SET customer_name = ?, customer_urduname = ?, primary_contact = ?, secondary_contact = ?, primary_address = ?, secondary_address = ?, city = ?, builty_info = ? 
+        WHERE id = ?`;
 
+    if (!id || !customer_name || !primary_contact || !primary_address || !city) {
+        throw new Error('Required fields are missing.');
+    }
+
+    await pool.execute(query, [customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info, id]);
+};
 
 export const deleteCustomer = async (id) => {
     const query = `DELETE FROM customers WHERE id = ?`;

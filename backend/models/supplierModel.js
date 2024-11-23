@@ -6,21 +6,26 @@ export const getAllSuppliers = async () => {
     return rows;
 };
 
-export const createSupplier = async (supplier_name, contact_info) => {
-    const query = `INSERT INTO suppliers (supplier_name, contact_info) VALUES (?, ?)`;
-    const [result] = await pool.execute(query, [supplier_name, contact_info]);
+export const createSupplier = async (supplier_name, supplier_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city) => {
+    const query = `
+        INSERT INTO suppliers (supplier_name, supplier_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+    const [result] = await pool.execute(query, [supplier_name, supplier_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city]);
     return result;
 };
 
-export const updateSupplier = async (id, supplier_name, contact_info) => {
-    const query = `UPDATE suppliers SET supplier_name = ?, contact_info = ? WHERE id = ?`;
-    
-    // Ensure both id, supplier_name and contact_info are defined before executing the query
-    if (supplier_name === undefined || id === undefined || contact_info === undefined) {
-        throw new Error('Supplier name or Supplier Contact or ID is undefined');
+export const updateSupplier = async (id, supplier_name, supplier_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city) => {
+    const query = `
+        UPDATE suppliers 
+        SET supplier_name = ?, supplier_urduname = ?, primary_contact = ?, secondary_contact = ?, primary_address = ?, secondary_address = ?, city = ? 
+        WHERE id = ?`;
+
+    if (!id || !supplier_name || !primary_contact || !primary_address || !city) {
+        throw new Error('Required fields are missing.');
     }
-    
-    await pool.execute(query, [supplier_name, contact_info, id]);
+
+    await pool.execute(query, [supplier_name, supplier_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, id]);
 };
 
 

@@ -4,7 +4,7 @@ import morgan from "morgan";
 import { connectToDatabase } from './config/dbConfig.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-// import productRoutes from './routes/productRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import roleRoutes from './routes/roleRoutes.js';
 import supplierRoutes from './routes/supplierRoutes.js';
@@ -37,6 +37,7 @@ app.use('/api/roles', roleRoutes);
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/companies', companyRoutes);
+app.use('/api/products', productRoutes);
 
 // Serve static files from the "uploads" folder
 app.use('/uploads', express.static('uploads'));

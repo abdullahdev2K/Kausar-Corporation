@@ -53,8 +53,18 @@ body{
   opacity: 0.8;
 }
 
-.categories-page-title, .users-page-title, .roles-page-title, .suppliers-page-title, .customers-page-title, .products-page-title, .companies-page-title {
+.categories-page-title, .users-page-title, .roles-page-title, .suppliers-page-title, .customers-page-title, .products-page-title, .companies-page-title, .inventory-page-title {
   border-bottom: 3px solid #8c52ff;
+}
+
+.page-link{
+  color: #8C52FF !important;
+}
+
+.active>.page-link, .page-link.active{
+  background-color: #8C52FF !important;
+  border-color: #8C52FF !important;
+  color: #ffffff !important;
 }
 
 /* Sidebar */

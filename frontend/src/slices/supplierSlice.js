@@ -30,16 +30,24 @@ export const deleteSupplier = createAsyncThunk('suppliers/deleteSupplier', async
 // Update a supplier
 export const updateSupplier = createAsyncThunk('suppliers/updateSupplier', async (updatedSupplier) => {
     const authToken = localStorage.getItem('token');
-    const response = await axios.put(`${API_URL}/supplier`, {
-        id: updatedSupplier.id,
-        supplier_name: updatedSupplier.supplier_name,
-        contact_info: updatedSupplier.contact_info
-    }, {
-        headers: { Authorization: `Bearer ${authToken}` },
-    });
+    const response = await axios.put(
+        `${API_URL}/supplier`,
+        {
+            id: updatedSupplier.id,
+            supplier_name: updatedSupplier.supplier_name,
+            supplier_urduname: updatedSupplier.supplier_urduname,
+            primary_contact: updatedSupplier.primary_contact,
+            secondary_contact: updatedSupplier.secondary_contact,
+            primary_address: updatedSupplier.primary_address,
+            secondary_address: updatedSupplier.secondary_address,
+            city: updatedSupplier.city,
+        },
+        {
+            headers: { Authorization: `Bearer ${authToken}` },
+        }
+    );
     return response.data;
 });
-
 
 const supplierSlice = createSlice({
     name: 'suppliers',
@@ -71,9 +79,9 @@ const supplierSlice = createSlice({
             .addCase(updateSupplier.fulfilled, (state, action) => {
                 const index = state.suppliers.findIndex((sup) => sup.id === action.payload.id);
                 if (index !== -1) {
-                    state.suppliers[index].supplier_name = action.payload.supplier_name;
+                    state.suppliers[index] = { ...state.suppliers[index], ...action.payload }; // Merge the updated data
                 }
-            });
+            });            
     },
 });
 

@@ -30,17 +30,25 @@ export const deleteCustomer = createAsyncThunk('customers/deleteCustomer', async
 // Update a customer
 export const updateCustomer = createAsyncThunk('customers/updateCustomer', async (updatedCustomer) => {
     const authToken = localStorage.getItem('token');
-    const response = await axios.put(`${API_URL}/customer`, {
-        id: updatedCustomer.id,
-        customer_name: updatedCustomer.customer_name,
-        contact_info: updatedCustomer.contact_info,
-        address: updatedCustomer.address
-    }, {
-        headers: { Authorization: `Bearer ${authToken}` },
-    });
+    const response = await axios.put(
+        `${API_URL}/customer`,
+        {
+            id: updatedCustomer.id,
+            customer_name: updatedCustomer.customer_name,
+            customer_urduname: updatedCustomer.customer_urduname,
+            primary_contact: updatedCustomer.primary_contact,
+            secondary_contact: updatedCustomer.secondary_contact,
+            primary_address: updatedCustomer.primary_address,
+            secondary_address: updatedCustomer.secondary_address,
+            city: updatedCustomer.city,
+            builty_info: updatedCustomer.builty_info,
+        },
+        {
+            headers: { Authorization: `Bearer ${authToken}` },
+        }
+    );
     return response.data;
 });
-
 
 const customerSlice = createSlice({
     name: 'customers',
@@ -72,9 +80,9 @@ const customerSlice = createSlice({
             .addCase(updateCustomer.fulfilled, (state, action) => {
                 const index = state.customers.findIndex((cus) => cus.id === action.payload.id);
                 if (index !== -1) {
-                    state.customers[index].customer_name = action.payload.customer_name;
+                    state.customers[index] = { ...state.customers[index], ...action.payload }; // Merge the updated data
                 }
-            });
+            });            
     },
 });
 

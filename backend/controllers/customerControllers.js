@@ -14,12 +14,12 @@ export const addCustomer = async (req, res) => {
         return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
 
-    const { customer_name, contact_info, address } = req.body;
+    const { customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info } = req.body;
 
-    console.log(req.body);
+    console.log(customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info);
 
     try {
-        const newCustomer = await createCustomer(customer_name, contact_info, address);
+        const newCustomer = await createCustomer(customer_name, customer_urduname, primary_contact, secondary_contact, primary_address, secondary_address, city, builty_info);
         res.status(201).json({ message: 'Customer added successfully', customer: newCustomer });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message || error });
@@ -44,16 +44,34 @@ export const modifyCustomer = async (req, res) => {
         return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
 
-    const { id, customer_name, contact_info, address } = req.body;
+    const {
+        id,
+        customer_name,
+        customer_urduname,
+        primary_contact,
+        secondary_contact,
+        primary_address,
+        secondary_address,
+        city,
+        builty_info,
+    } = req.body;
 
-    console.log(req.body);
-
-    if (!id || !customer_name || !contact_info || !address) {
-        return res.status(400).json({ message: 'Customer name or Customer contact or Customer address or ID is undefined' });
+    if (!id || !customer_name || !primary_contact || !primary_address || !city) {
+        return res.status(400).json({ message: 'Required fields are missing.' });
     }
 
     try {
-        await updateCustomer(id, customer_name, contact_info, address);
+        await updateCustomer(
+            id,
+            customer_name,
+            customer_urduname,
+            primary_contact,
+            secondary_contact,
+            primary_address,
+            secondary_address,
+            city,
+            builty_info
+        );
         res.status(200).json({ message: 'Customer updated successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message || error });

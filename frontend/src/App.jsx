@@ -27,201 +27,224 @@ import Companies from './components/company/Companies.jsx';
 import AddCompany from './components/company/AddCompany.jsx';
 import UpdateCompany from './components/company/UpdateCompany.jsx';
 import Products from './components/products/Products.jsx';
+import AddProduct from './components/products/AddProduct.jsx';
+import UpdateProduct from './components/products/UpdateProduct.jsx';
+import Inventory from './components/inventory/Inventory.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import './App.css';
 
 const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const location = useLocation();
-  
-  // Open Sidebar
-  const openNav = () => {
-    const sidebar = document.getElementById("mySidebar");
-    const main = document.getElementById("main");
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const location = useLocation();
 
-    if (!sidebar || !main) return;
+    // Open Sidebar
+    const openNav = () => {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
 
-    const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (screenWidth <= 575) {
-      sidebar.style.width = "100%";
-      main.style.marginLeft = "0";
-    } else {
-      sidebar.style.width = "250px";
-      main.style.marginLeft = "250px";
-    }
-    setIsSidebarOpen(true);
-  };
+        if (!sidebar || !main) return;
 
-  // Close Sidebar
-  const closeNav = () => {
-    const sidebar = document.getElementById("mySidebar");
-    const main = document.getElementById("main");
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (screenWidth <= 575) {
+        sidebar.style.width = "100%";
+        main.style.marginLeft = "0";
+        } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+        }
+        setIsSidebarOpen(true);
+    };
 
-    if (!sidebar || !main) return;
+    // Close Sidebar
+    const closeNav = () => {
+        const sidebar = document.getElementById("mySidebar");
+        const main = document.getElementById("main");
 
-    sidebar.style.width = "0";
-    main.style.marginLeft = "0";
-    setIsSidebarOpen(false);
-  };
+        if (!sidebar || !main) return;
 
-  // Toggle Sidebar
-  const toggleSidebar = () => {
-    if (isSidebarOpen) {
-      closeNav();
-    } else {
-      openNav();
-    }
-  };
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+        setIsSidebarOpen(false);
+    };
 
-  const isLoginPage = location.pathname === '/';
-  const isSignUpPage = location.pathname === '/signup';
-  const isForgotPasswordPage = location.pathname === '/forgot-password';
-  const isResetPasswordPage = location.pathname.startsWith('/reset-password');
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        if (isSidebarOpen) {
+        closeNav();
+        } else {
+        openNav();
+        }
+    };
 
-  // Adjust layout when navigating between routes
-  useEffect(() => {
-    if (!isLoginPage && !isSignUpPage && !isForgotPasswordPage && !isResetPasswordPage) {
-      openNav();
-    } else {
-      closeNav();
-    }
-  }, [location.pathname]); // Adding `location.pathname` dependency
+    const isLoginPage = location.pathname === '/';
+    const isSignUpPage = location.pathname === '/signup';
+    const isForgotPasswordPage = location.pathname === '/forgot-password';
+    const isResetPasswordPage = location.pathname.startsWith('/reset-password');
 
-  const siteTitle = "Kausar Corporation";
+    // Adjust layout when navigating between routes
+    useEffect(() => {
+        if (!isLoginPage && !isSignUpPage && !isForgotPasswordPage && !isResetPasswordPage) {
+        openNav();
+        } else {
+        closeNav();
+        }
+    }, [location.pathname]); // Adding `location.pathname` dependency
 
-  return (
-    <>
-      {!isLoginPage && !isSignUpPage && !isForgotPasswordPage && !isResetPasswordPage && (
+    const siteTitle = "Kausar Corporation";
+
+    return (
         <>
-          <Header toggleSidebar={toggleSidebar} siteTitle={siteTitle} />
-          <Sidebar />
-        </>
-      )}
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/categories" element={<Categories />} />
+            {!isLoginPage && !isSignUpPage && !isForgotPasswordPage && !isResetPasswordPage && (
+                <>
+                    <Header toggleSidebar={toggleSidebar} siteTitle={siteTitle} />
+                    <Sidebar />
+                </>
+            )}
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/categories" element={<Categories />} />
 
-        <Route 
-            path="/add-category" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <AddCategory />
-                </ProtectedRoute>
-            } 
-        />
-        <Route 
-            path="/update-category" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <UpdateCategory />
-                </ProtectedRoute>
-            } 
-        />
-        
-        <Route path="/users" element={<Users />} />
+                <Route 
+                    path="/add-category" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddCategory />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-category" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <UpdateCategory />
+                        </ProtectedRoute>
+                    } 
+                />
+                
+                <Route path="/users" element={<Users />} />
 
-        <Route 
-            path="/add-user" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <AddUser />
-                </ProtectedRoute>
-            } 
-        />
-        <Route 
-            path="/update-user/:id" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <UpdateUser />
-                </ProtectedRoute>
-            } 
-        />
+                <Route 
+                    path="/add-user" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddUser />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-user/:id" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <UpdateUser />
+                        </ProtectedRoute>
+                    } 
+                />
 
-        <Route path="/roles" element={<Roles />} />
-        
-        <Route 
-            path="/add-role" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <AddRole />
-                </ProtectedRoute>
-            } 
-        />
-        <Route 
-            path="/update-role" 
-            element={
-              <ProtectedRoute requiredRole="admin">
-                    <UpdateRole />
-                </ProtectedRoute>
-            } 
-        />
-
-        <Route path="/suppliers" element={<Suppliers />} />
-
-        <Route 
-            path="/add-supplier" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <AddSupplier />
-                </ProtectedRoute>
-            } 
-        />
-        <Route 
-              path="/update-supplier" 
-              element={
-                  <ProtectedRoute requiredRole="admin">
-                      <UpdateSupplier />
-                  </ProtectedRoute>
-              } 
-          />
-
-        <Route path="/customers" element={<Customers />} />
-
-        <Route 
-            path="/add-customer" 
-            element={
-                <ProtectedRoute requiredRole="admin">
-                    <AddCustomer />
-                </ProtectedRoute>
-            } 
-        />
-        <Route 
-              path="/update-customer" 
-              element={
-                  <ProtectedRoute requiredRole="admin">
-                      <UpdateCustomer />
-                  </ProtectedRoute>
-              } 
-          />
-          
-          <Route path="/companies" element={<Companies />} />
-
-          <Route 
-              path="/add-company" 
-              element={
-                  <ProtectedRoute requiredRole="admin">
-                      <AddCompany />
-                  </ProtectedRoute>
-              } 
-          />
-          <Route 
-                path="/update-company" 
-                element={
+                <Route path="/roles" element={<Roles />} />
+                
+                <Route 
+                    path="/add-role" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddRole />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-role" 
+                    element={
                     <ProtectedRoute requiredRole="admin">
-                        <UpdateCompany />
-                    </ProtectedRoute>
-                } 
-            />
+                            <UpdateRole />
+                        </ProtectedRoute>
+                    } 
+                />
 
-          <Route path="/products" element={<Products />} />
-      </Routes>
-    </>
-  );
+                <Route path="/suppliers" element={<Suppliers />} />
+
+                <Route 
+                    path="/add-supplier" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddSupplier />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-supplier" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <UpdateSupplier />
+                        </ProtectedRoute>
+                    } 
+                />
+
+                <Route path="/customers" element={<Customers />} />
+
+                <Route 
+                    path="/add-customer" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddCustomer />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-customer" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <UpdateCustomer />
+                        </ProtectedRoute>
+                    } 
+                />
+                
+                <Route path="/companies" element={<Companies />} />
+
+                <Route 
+                    path="/add-company" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddCompany />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                        path="/update-company" 
+                        element={
+                            <ProtectedRoute requiredRole="admin">
+                                <UpdateCompany />
+                            </ProtectedRoute>
+                        } 
+                    />
+
+                <Route path="/products" element={<Products />} />
+
+                <Route 
+                    path="/add-product" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <AddProduct />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/update-product/:id" 
+                    element={
+                        <ProtectedRoute requiredRole="admin">
+                            <UpdateProduct />
+                        </ProtectedRoute>
+                    } 
+                />
+
+                <Route path="/inventory" element={<Inventory />} />
+            
+            </Routes>
+        </>
+    );
 };
 
 export default App;
